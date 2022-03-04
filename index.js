@@ -56,14 +56,14 @@ message:"please enter the intern's school name"});
 
 function addEngineer() {
     inquirer.prompt(questionsEngineer).then((answersEngineer) => {
-        this.engineer = new Engineer(answersEngineer.name, answersEngineer.id, answersEngineer.email, answersEngineer.github)
+        this.engineers.push = new Engineer(answersEngineer.name, answersEngineer.id, answersEngineer.email, answersEngineer.github);
         return addTeam();
     });
 };
 
 function addIntern() {
     inquirer.prompt(questionsIntern).then((answersIntern) => {
-        this.intern = new Intern(answersIntern.name, answersIntern.id, answersIntern.email, answersIntern.school)
+        this.interns.push = new Intern(answersIntern.name, answersIntern.id, answersIntern.email, answersIntern.school);
         return addTeam();
     });
 };
@@ -93,7 +93,8 @@ function addTeam() {
 function startTeam() {
     inquirer.prompt(questionsManager).then((answersManager) => {
         this.manager = new Manager(answersManager.name, answersManager.id, answersManager.email, answersManager.officeNumber)
-        console.log(this.manager)
+        this.engineers = [];
+        this.interns = [];
         return addTeam();
         });
     };
