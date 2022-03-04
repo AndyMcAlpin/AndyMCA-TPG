@@ -58,20 +58,20 @@ message:"please enter the intern's school name"});
 
 function addEngineer() {
     inquirer.prompt(questionsEngineer).then((answersEngineer) => {
-        this.currentTeam.push(new Engineer(answersEngineer.name, answersEngineer.id, answersEngineer.email, answersEngineer.github));
+        currentTeam = team.push(new Engineer(answersEngineer.name, answersEngineer.id, answersEngineer.email, answersEngineer.github));
         return addTeam();
     });
 };
 
 function addIntern() {
     inquirer.prompt(questionsIntern).then((answersIntern) => {
-        this.currentTeam.push(new Intern(answersIntern.name, answersIntern.id, answersIntern.email, answersIntern.school));
+        currentTeam = team.push(new Intern(answersIntern.name, answersIntern.id, answersIntern.email, answersIntern.school));
         return addTeam();
     });
 };
 
 function generateHTML() {
-    console.log(this);
+    console.log(team);
 };
 
 function addTeam() {
@@ -94,7 +94,7 @@ function addTeam() {
 
 function startTeam() {
     inquirer.prompt(questionsManager).then((answersManager) => {
-        this.currentTeam.push(new Manager(answersManager.name, answersManager.id, answersManager.email, answersManager.officeNumber));
+        currentTeam = team.push(new Manager(answersManager.name, answersManager.id, answersManager.email, answersManager.officeNumber));
         return addTeam();
         });
     };
