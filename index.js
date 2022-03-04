@@ -3,6 +3,8 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+const team = [];
+let currentTeam = team[team.length];
 
 const questionsManager = [
     {
@@ -56,14 +58,14 @@ message:"please enter the intern's school name"});
 
 function addEngineer() {
     inquirer.prompt(questionsEngineer).then((answersEngineer) => {
-        this.engineers.push = new Engineer(answersEngineer.name, answersEngineer.id, answersEngineer.email, answersEngineer.github);
+        this.currentTeam.push(new Engineer(answersEngineer.name, answersEngineer.id, answersEngineer.email, answersEngineer.github));
         return addTeam();
     });
 };
 
 function addIntern() {
     inquirer.prompt(questionsIntern).then((answersIntern) => {
-        this.interns.push = new Intern(answersIntern.name, answersIntern.id, answersIntern.email, answersIntern.school);
+        this.currentTeam.push(new Intern(answersIntern.name, answersIntern.id, answersIntern.email, answersIntern.school));
         return addTeam();
     });
 };
@@ -92,9 +94,7 @@ function addTeam() {
 
 function startTeam() {
     inquirer.prompt(questionsManager).then((answersManager) => {
-        this.manager = new Manager(answersManager.name, answersManager.id, answersManager.email, answersManager.officeNumber)
-        this.engineers = [];
-        this.interns = [];
+        this.currentTeam.push(new Manager(answersManager.name, answersManager.id, answersManager.email, answersManager.officeNumber));
         return addTeam();
         });
     };
