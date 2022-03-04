@@ -1,7 +1,7 @@
 const Engineer = require('../lib/Engineer.js');
 
 test('creates manager object', () => {
-    const engineer = new Engineer('nombre', '2', '123@abc.com', 'Gittyup');
+    const engineer = new Engineer('nombre', '2', '123@abc.com', 'Engineer', 'Gittyup');
 
     expect(engineer.name).toBe('nombre');
     expect(engineer.id).toEqual('2');

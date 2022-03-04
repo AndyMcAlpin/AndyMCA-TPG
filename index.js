@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generateHTML = require('./src/page-template');
+const { writeFile } = require('./src/generate-site')
 
 const team = [];
 let currentTeam = team[team.length];
@@ -58,21 +60,22 @@ message:"please enter the intern's school name"});
 
 function addEngineer() {
     inquirer.prompt(questionsEngineer).then((answersEngineer) => {
-        currentTeam = team.push(new Engineer(answersEngineer.name, answersEngineer.id, answersEngineer.email, answersEngineer.github));
+        currentTeam = team.push(new Engineer(answersEngineer.name, answersEngineer.id, answersEngineer.email, answersEngineer.role, answersEngineer.github));
         return addTeam();
     });
 };
 
 function addIntern() {
     inquirer.prompt(questionsIntern).then((answersIntern) => {
-        currentTeam = team.push(new Intern(answersIntern.name, answersIntern.id, answersIntern.email, answersIntern.school));
+        currentTeam = team.push(new Intern(answersIntern.name, answersIntern.id, answersIntern.email, answersIntern.role, answersIntern.school));
         return addTeam();
     });
 };
 
-function generateHTML() {
-    console.log(team);
-};
+// function generateHTML() {
+    // console.log(team); 
+// };
+
 
 function addTeam() {
     inquirer.prompt({
@@ -87,14 +90,20 @@ function addTeam() {
         } if (memberAdd === 'Intern') {
             return addIntern();
         } else {
-            generateHTML();
+            generateHTML()
+            .then(pageHTML => {
+                return writeFile(pageHTML);
+            })
+            .catch(err => {
+                console.log(err);
+            });    
         }
     })
 };
 
 function startTeam() {
     inquirer.prompt(questionsManager).then((answersManager) => {
-        currentTeam = team.push(new Manager(answersManager.name, answersManager.id, answersManager.email, answersManager.officeNumber));
+        currentTeam = team.push(new Manager(answersManager.name, answersManager.id, answersManager.email, answersManager.role, answersManager.officeNumber));
         return addTeam();
         });
     };

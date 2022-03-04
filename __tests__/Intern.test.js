@@ -1,7 +1,7 @@
 const Intern = require('../lib/Intern.js');
 
 test('creates manager object', () => {
-    const intern = new Intern('nombre', '2', '123@abc.com', 'escuela');
+    const intern = new Intern('nombre', '2', '123@abc.com', 'Intern', 'escuela');
 
     expect(intern.name).toBe('nombre');
     expect(intern.id).toEqual('2');

@@ -1,7 +1,7 @@
 const Manager = require('../lib/Manager.js');
 
 test('creates manager object', () => {
-    const manager = new Manager('nombre', '2', '123@abc.com', '123');
+    const manager = new Manager('nombre', '2', '123@abc.com', 'Manager', '123');
 
     expect(manager.name).toBe('nombre');
     expect(manager.id).toEqual('2');
