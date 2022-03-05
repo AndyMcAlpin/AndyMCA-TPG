@@ -72,9 +72,7 @@ function addIntern() {
     });
 };
 
-// function generateHTML() {
-    // console.log(team); 
-// };
+// function generateHTML() {console.log(team[0].name); };
 
 
 function addTeam() {
@@ -90,7 +88,7 @@ function addTeam() {
         } if (memberAdd === 'Intern') {
             return addIntern();
         } else {
-            generateHTML()
+            generateHTML(team)
             .then(pageHTML => {
                 return writeFile(pageHTML);
             })

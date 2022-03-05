@@ -1,31 +1,56 @@
 
     const generateTeam = team => {
+        
         return `
     <section class="my-3" id="portfolio">
         <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
         <div class="flex-row justify-space-between">
         ${team
-        .filter(({ role }) => role)
+        .filter( employee  => employee.role === 'Manager')
         .map(({ name, id, email, role, officeNumber }) => {
+            return`
+            <div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">${name}, ${role}</h3>
+            <h3 class="portfolio-item-title text-light">${id}</h3>
+            <h3 class="portfolio-item-title text-light">${email}</h3>
+            <h3 class="portfolio-item-title text-light">${officeNumber}</h3>
+            </div>
+            
+        `})
+        .join('')}
+        ${team
+        .filter( employee  => employee.role === 'Engineer')
+        .map(({ name, id, email, role, github }) => {
             return`
             <div class="col-12 mb-2 bg-dark text-light p-3">
             <h3 class="portfolio-item-title text-light">${name} ${role}</h3>
             <h3 class="portfolio-item-title text-light">${id}</h3>
             <h3 class="portfolio-item-title text-light">${email}</h3>
-            <h3 class="portfolio-item-title text-light">${officeNumber}</h3>
+            <h3 class="portfolio-item-title text-light">${github}</h3>
             </div>
-            `;
-        })
+            
+        `})
         .join('')}
-
+        ${team
+        .filter( employee  => employee.role === 'Intern')
+        .map(({ name, id, email, role, school }) => {
+            return`
+            <div class="col-12 mb-2 bg-dark text-light p-3">
+            <h3 class="portfolio-item-title text-light">${name} ${role}</h3>
+            <h3 class="portfolio-item-title text-light">${id}</h3>
+            <h3 class="portfolio-item-title text-light">${email}</h3>
+            <h3 class="portfolio-item-title text-light">${school}</h3>
+            </div>
+            
+        `})
+        .join('')}
+        
             </div>
         </section>
         `;
     };
 
-    module.exports = team => {
-    
-    // const { Manager, Engineer, Intern } = team;
+    module.exports = async (team) => {
 
     return `
     <!DOCTYPE html>
@@ -49,7 +74,7 @@
         ${generateTeam(team)}
         </main>
         <footer class="container text-center py-3">
-        <h3 class="text-dark">&copy;2022 by ${team.Manager.name}</h3>
+        <h3 class="text-dark">&copy;2022 by </h3>
         </footer>
     </body>
     </html>
